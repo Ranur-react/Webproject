@@ -1,83 +1,77 @@
 <?php
-session_start();
-include('configdb.php');
+include('assetsHeader.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="favicon.ico">
-
-  <title><?php echo $_SESSION['judul'] . " - " . $_SESSION['by']; ?></title>
-  <!-- Bootstrap core CSS -->
-  <!--link href="ui/css/bootstrap.css" rel="stylesheet"-->
-  <link href="ui/css/cerulean.min.css" rel="stylesheet">
-  <style>
-
-  </style>
-  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-  <!--script src="./index_files/ie-emulation-modes-warning.js"></script-->
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
 
 <body>
-  <!-- Static navbar -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#"><?php echo $_SESSION['judul']; ?></a>
-      </div>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth  theme-one">
+                <div class="row w-100">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auto-form-wrapper">
+                            <form action="#">
+                                <div class="form-group">
+                                    <label class="label">Username</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control Username" name="Username" placeholder="Username">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="mdi mdi-check-circle-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" name="password" class="form-control password" placeholder="*********">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="mdi mdi-check-circle-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <a onclick="GoLogin()" class="btn btn-primary submit-btn btn-block">Login</a>
+                                </div>
+                                <div class="form-group d-flex justify-content-between">
+                                    <div class="pesanEror"></div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
-  </nav>
-  <div class="container">
-
-    <!-- Main component for a primary marketing message or call to action -->
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Home</div>
-      <div class="panel-body">
-        <h3>
-          <p align="center" class="text-primary"><?php echo $_SESSION['welcome']; ?></p>
-        </h3>
-
-        <center>
-          <h1 style="color:#2980b9; font-family:'arial black'">SPK WP Pemilihan Perabot Rotan Adit Furniture</h1>
-          <img src="foto/gambar (9).jpg" alt="adit furniture" height="300" width="700">
-        </center>
-      </div>
-
-      <!-- Table -->
-      <table class="table">
-      </table>
-      <div class="panel-footer text-primary"><?php echo $_SESSION['by']; ?><div class="pull-right"></div>
-      </div>
-    </div>
-
-  </div> <!-- /container -->
-
-
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="ui/js/jquery-1.10.2.min.js"></script>
-  <script src="ui/js/bootstrap.min.js"></script>
-  <script src="ui/js/bootswatch.js"></script>
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="ui/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
 
 </body>
+<?php
+include('assetsFooter.php');
+?>
+<script>
+    var GoLogin = () => {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Webproject/controller/LoginController.php",
+            data: {
+                Username: $('.Username').val(),
+                password: $('.password').val()
+            },
+            success: function(response) {
+                var data = JSON.parse(response);
+                console.log('====================================');
+                console.log(data);
 
-</html>
+                $('.pesanEror').html("<label class=\"text - small text - danger \">Forgot Password</label>");
+                console.log('====================================');
+            }
+        });
+    }
+</script>
