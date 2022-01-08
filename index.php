@@ -64,13 +64,13 @@ include('assetsFooter.php');
                 Username: $('.Username').val(),
                 password: $('.password').val()
             },
+            dataType: "JSON",
             success: function(response) {
-                var data = JSON.parse(response);
                 console.log('====================================');
-                console.log(data);
-
-                $('.pesanEror').html("<label class=\"text - small text - danger \">Forgot Password</label>");
-                console.log('====================================');
+                console.log(response.status);
+                if (response.status) {
+                    window.location.href = "http://localhost/Webproject/Pages";
+                }
             }
         });
     }

@@ -1,6 +1,6 @@
 
 <?php
-$urlassetBootsrap = 'http://localhost/Webproject/LoginAssets/src';
+$urlassetBootsrap = 'http://localhost/Webproject/Assets/src';
 ?>
 
     <script src="<?= $urlassetBootsrap ?>/assets/vendors/js/vendor.bundle.base.js"></script>
