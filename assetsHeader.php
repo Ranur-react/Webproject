@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$urlassetBootsrap = 'http://localhost/Webproject/LoginAssets/src';
+$urlassetBootsrap = 'http://localhost/Webproject/Assets/src';
 ?>
 
 <head>
